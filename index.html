@@ -19,24 +19,24 @@
         var apiKey = "925dbe02e8de4df0b85e6d84bf0d33e8";
 
         //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
-        var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+        var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognizeinvideo";
 
         $('#btn').click(function() {
             //file: The file that will be sent to the api
-            var file = document.getElementById('filename').files[0];
-            console.log(file);
-            CallAPI(file, apiUrl, apiKey);
+            // var file = document.getElementById('filename').files[0];
+            // CallAPI(file, apiUrl, apiKey);
+            CallAPI(apiUrl, apiKey);
         });
 
-        function CallAPI(file, apiUrl, apiKey) {
+        function CallAPI(apiUrl, apiKey) {
             $.ajax({
                     url: apiUrl,
                     beforeSend: function(xhrObj) {
-                        xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+                        xhrObj.setRequestHeader("Content-Type", "application/json");
                         xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
                     },
                     type: "POST",
-                    data: file,
+                    data: "./test.wmv",
                     processData: false
                 })
                 .done(function(response) {
